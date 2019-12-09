@@ -2,6 +2,7 @@ package ar.edu.undec.testboundaries.TestData.Mapper;
 
 import Model.Cuenta;
 import ar.edu.undec.testboundaries.TestData.ModeloData.CuentaEntity;
+import ar.edu.undec.testboundaries.TestData.RepositorioData.IRepositorioConsultarCuentaPorIdCRUD;
 
 public class CuentaMapper {
 
@@ -18,12 +19,13 @@ public class CuentaMapper {
         }
     }
 
-    public static CuentaEntity mapeoCoreData(Cuenta cuenta) {
+    public static CuentaEntity mapeoCoreData(Cuenta cuenta,
+                                             IRepositorioConsultarCuentaPorIdCRUD iRepositorioConsultarCuentaPorIdCRUD) {
         try {
             if (cuenta.getIdCuenta() == null) {
                 return new CuentaEntity(cuenta.getUsuario(), cuenta.getFechaCreacion(), cuenta.getNombre(), cuenta.getPass());
             }
-            return null; //TODO falta consultar cuenta por id
+            return iRepositorioConsultarCuentaPorIdCRUD.findByIdCuenta(cuenta.getIdCuenta());
         } catch (Exception e) {
             e.printStackTrace();
             return null;
