@@ -1,5 +1,6 @@
 package UnitTest;
 
+import Excepciones.FechaCreacionIncorrectaException;
 import Mockito.MockitoExtension;
 import Model.Cuenta;
 import Repository.IRepositorioConsultarCuentaPorUsuario;
@@ -8,7 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import Exception.CuentaIncompletaException;
+import Excepciones.CuentaIncompletaException;
 
 import java.time.LocalDateTime;
 
@@ -21,7 +22,7 @@ public class ConsultarCuentaPorUsuarioUnitTest {
     IRepositorioConsultarCuentaPorUsuario iRepositorioConsultarCuentaPorUsuario;
 
     @Test
-    void consultarCuentaPorUsuario_HayCoincidencia_DevuelveCuenta() throws CuentaIncompletaException {
+    void consultarCuentaPorUsuario_HayCoincidencia_DevuelveCuenta() throws CuentaIncompletaException, FechaCreacionIncorrectaException {
         ConsultarCuentaPorUsuarioUseCase consultarCuentaPorUsuarioUseCase = new ConsultarCuentaPorUsuarioUseCase(iRepositorioConsultarCuentaPorUsuario);
         when(iRepositorioConsultarCuentaPorUsuario.findByUsuario("rabazan")).thenReturn(Cuenta.instance(1, "rabazan",
                 LocalDateTime.of(2019, 12, 8, 12, 0, 0), "Rodrigo Bazan", "37415281"));

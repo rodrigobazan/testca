@@ -2,7 +2,8 @@ package Model;
 
 import java.time.LocalDateTime;
 
-import Exception.CuentaIncompletaException;
+import Excepciones.CuentaIncompletaException;
+import Excepciones.FechaCreacionIncorrectaException;
 
 public class Cuenta {
 
@@ -21,10 +22,13 @@ public class Cuenta {
     }
 
     public static Cuenta instance(Integer idCuenta, String usuario, LocalDateTime fechaCreacion,
-                                  String nombre, String pass) throws CuentaIncompletaException {
-        if (idCuenta == null || usuario == null || usuario.isEmpty() || fechaCreacion == null || nombre == null || nombre.isEmpty()
+                                  String nombre, String pass) throws CuentaIncompletaException, FechaCreacionIncorrectaException {
+        if (usuario == null || usuario.isEmpty() || fechaCreacion == null || nombre == null || nombre.isEmpty()
                 || pass == null || pass.isEmpty())
             throw new CuentaIncompletaException();
+        if (fechaCreacion.isAfter(LocalDateTime.now())) {
+            throw new FechaCreacionIncorrectaException();
+        }
         return new Cuenta(idCuenta, usuario, fechaCreacion, nombre, pass);
     }
 
