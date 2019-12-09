@@ -17,4 +17,16 @@ public class CuentaMapper {
             return null;
         }
     }
+
+    public static CuentaEntity mapeoCoreData(Cuenta cuenta) {
+        try {
+            if (cuenta.getIdCuenta() == null) {
+                return new CuentaEntity(cuenta.getUsuario(), cuenta.getFechaCreacion(), cuenta.getNombre(), cuenta.getPass());
+            }
+            return null; //TODO falta consultar cuenta por id
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
