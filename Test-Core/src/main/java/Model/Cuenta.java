@@ -27,4 +27,24 @@ public class Cuenta {
             throw new CuentaIncompletaException();
         return new Cuenta(idCuenta, usuario, fechaCreacion, nombre, pass);
     }
+
+    public Integer getIdCuenta() {
+        return idCuenta;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public LocalDateTime getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getPass() {
+        return pass;
+    }
 }

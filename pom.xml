@@ -11,6 +11,7 @@
     <modules>
         <module>Test-Core</module>
         <module>Test-Boundaries</module>
+        <module>Test-Adapter</module>
     </modules>
 
 
