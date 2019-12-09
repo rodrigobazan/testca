@@ -2,3 +2,9 @@
 .idea/
 
 Test-Core/target/
+
+Test-Boundaries/.mvn/
+
+Test-Boundaries/mvnw
+
+Test-Boundaries/mvnw.cmd
