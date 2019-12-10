@@ -23,7 +23,7 @@ public class Curso {
     }
 
     public static Curso instance(Integer idCurso, String titulo, Collection<Cuenta> inscriptos, LocalDateTime fechaLimiteInscripcion) throws CursoIncompletoException, FechaLimiteIncorrectaException {
-        if (titulo == null || titulo.isEmpty()) {
+        if (titulo == null || titulo.isEmpty() || fechaLimiteInscripcion == null) {
             throw new CursoIncompletoException();
         }
         if (fechaLimiteInscripcion.isBefore(LocalDateTime.now())) {
