@@ -12,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import static org.mockito.Mockito.when;
 
@@ -25,7 +26,8 @@ public class ConsultarCursoPorNombreUnitTest {
     void consultarCursoPorNombre_HayCoincidencia_DevuelveCurso() throws FechaLimiteIncorrectaException, CursoIncompletoException {
         ConsultarCursoPorNombreUseCase consultarCursoPorNombreUseCase = new ConsultarCursoPorNombreUseCase(iRepositorioConsultarCursoPorNombre);
         when(iRepositorioConsultarCursoPorNombre.findByTituloEquals("Nuevo Curso"))
-                .thenReturn(Curso.instance(1, "Nuevo Curso", LocalDateTime.of(2019, 12, 31, 0, 0, 0)));
+                .thenReturn(Curso.instance(1, "Nuevo Curso", new ArrayList<>(),
+                        LocalDateTime.of(2019, 12, 31, 0, 0, 0)));
         Curso buscado = consultarCursoPorNombreUseCase.consultarCursoPorNombre("Nuevo Curso");
         Assertions.assertNotNull(buscado);
     }
