@@ -1,9 +1,7 @@
 package ar.edu.undec.testboundaries.TestService.Config;
 
-import Repository.IRepositorioConsultarCuentaPorId;
-import Repository.IRepositorioConsultarCuentaPorUsuario;
-import Repository.IRepositorioCrearCuenta;
-import Repository.IRepositorioModificarCuenta;
+import Repository.*;
+import UseCase.ConsultarCuentasUseCase;
 import UseCase.CrearCuentaUseCase;
 import UseCase.ModificarCuentaUseCase;
 import org.springframework.context.annotation.Bean;
@@ -20,14 +18,18 @@ public class UseCaseConfig {
 
     private final IRepositorioModificarCuenta iRepositorioModificarCuenta;
 
+    private final IRepositorioConsultarCuentas iRepositorioConsultarCuentas;
+
     public UseCaseConfig(IRepositorioCrearCuenta iRepositorioCrearCuenta,
                          IRepositorioConsultarCuentaPorUsuario iRepositorioConsultarCuentaPorUsuario,
                          IRepositorioConsultarCuentaPorId iRepositorioConsultarCuentaPorId,
-                         IRepositorioModificarCuenta iRepositorioModificarCuenta) {
+                         IRepositorioModificarCuenta iRepositorioModificarCuenta,
+                         IRepositorioConsultarCuentas iRepositorioConsultarCuentas) {
         this.iRepositorioCrearCuenta = iRepositorioCrearCuenta;
         this.iRepositorioConsultarCuentaPorUsuario = iRepositorioConsultarCuentaPorUsuario;
         this.iRepositorioConsultarCuentaPorId = iRepositorioConsultarCuentaPorId;
         this.iRepositorioModificarCuenta = iRepositorioModificarCuenta;
+        this.iRepositorioConsultarCuentas = iRepositorioConsultarCuentas;
     }
 
     @Bean
@@ -39,6 +41,11 @@ public class UseCaseConfig {
     public ModificarCuentaUseCase modificarCuentaUseCase() {
         return new ModificarCuentaUseCase(iRepositorioConsultarCuentaPorId, iRepositorioModificarCuenta,
                 iRepositorioConsultarCuentaPorUsuario);
+    }
+
+    @Bean
+    public ConsultarCuentasUseCase consultarCuentasUseCase() {
+        return new ConsultarCuentasUseCase(iRepositorioConsultarCuentas);
     }
 
 }
