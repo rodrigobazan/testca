@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/")
 public class CrearCuentaController {
 
-
     private CrearCuentaAdapter crearCuentaAdapter;
 
     public CrearCuentaController(CrearCuentaAdapter crearCuentaAdapter) {
