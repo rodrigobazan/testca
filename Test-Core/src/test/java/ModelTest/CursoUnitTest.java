@@ -17,28 +17,21 @@ public class CursoUnitTest {
     @Test
     void crearCurso_TodosLosCamposObligatorios_CreaNuevaInstancia() throws FechaLimiteIncorrectaException, CursoIncompletoException {
         Curso curso = Curso.instance(null, "Nuevo Curso", new ArrayList<>(),
-                LocalDateTime.of(2019, 12, 31, 0, 0, 0));
+                LocalDateTime.now().plusDays(5), 10);
         Assertions.assertNotNull(curso);
     }
 
     @Test
     void crearCurso_FaltanCamposObligatorios_CursoIncompletoException() throws FechaLimiteIncorrectaException, CursoIncompletoException {
         Assertions.assertThrows(CursoIncompletoException.class, () -> Curso.instance(null, "", new ArrayList<>(),
-                LocalDateTime.of(2019, 12, 31, 0, 0, 0)));
+                LocalDateTime.now().plusDays(5), 10));
     }
 
     @Test
     void crearCurso_fechaLimiteInscripcionCorrecta_CrearInstancia() throws FechaLimiteIncorrectaException, CursoIncompletoException {
         Curso curso = Curso.instance(null, "Nuevo Curso", new ArrayList<>(),
-                LocalDateTime.of(2019, 12, 31, 0, 0, 0));
+                LocalDateTime.now().plusDays(5), 10);
         Assertions.assertNotNull(curso);
     }
-
-    @Test
-    void crearCurso_fechaLimiteInscripcionIncorrecta_FechaLimiteIncorrectaException() throws FechaLimiteIncorrectaException, CursoIncompletoException {
-        Assertions.assertThrows(FechaLimiteIncorrectaException.class, () -> Curso.instance(null, "Nuevo Curso", new ArrayList<>(),
-                LocalDateTime.now().minusDays(1)));
-    }
-
 
 }

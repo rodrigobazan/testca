@@ -31,7 +31,7 @@ public class CrearCursoUnitTest {
     @Test
     void crearCurso_NoExisteNombreCurso_CrearCorrectamente() throws FechaLimiteIncorrectaException, CursoIncompletoException, PersistException, CursoExisteException {
         Curso curso = Curso.instance(null, "Nuevo Curso", new ArrayList<>(),
-                LocalDateTime.of(2019, 12, 31, 0, 0, 0));
+                LocalDateTime.now().plusDays(5), 10);
         CrearCursoUseCase crearCursoUseCase = new CrearCursoUseCase(iRepositorioConsultarCursoPorNombre, iRepositorioCrearCurso);
         when(iRepositorioConsultarCursoPorNombre.findByTituloEquals("Nuevo Curso")).thenReturn(null);
         when(iRepositorioCrearCurso.persist(curso)).thenReturn(true);
@@ -42,10 +42,10 @@ public class CrearCursoUnitTest {
     @Test
     void crearCurso_ExisteNombreCurso_CursoExisteException() throws FechaLimiteIncorrectaException, CursoIncompletoException, PersistException, CursoExisteException {
         Curso curso = Curso.instance(null, "Nuevo Curso", new ArrayList<>(),
-                LocalDateTime.of(2019, 12, 31, 0, 0, 0));
+                LocalDateTime.now().plusDays(5), 10);
         CrearCursoUseCase crearCursoUseCase = new CrearCursoUseCase(iRepositorioConsultarCursoPorNombre, iRepositorioCrearCurso);
         when(iRepositorioConsultarCursoPorNombre.findByTituloEquals("Nuevo Curso")).thenReturn(Curso.instance(null, "Nuevo Curso", new ArrayList<>(),
-                LocalDateTime.of(2019, 12, 31, 0, 0, 0)));
+                LocalDateTime.now().plusDays(5), 10));
         Assertions.assertThrows(CursoExisteException.class, () -> crearCursoUseCase.crearCurso(curso));
     }
 

@@ -24,7 +24,8 @@ public class ConsultarCursoPorIdUnitTest {
 
     @Test
     void consultarCursoPorId_ExisteId_DevuelveCurso() throws FechaLimiteIncorrectaException, CursoIncompletoException {
-        Curso curso = Curso.instance(1, "Nuevo Curso", new ArrayList<>(), LocalDateTime.of(2019, 12, 31, 0, 0, 0));
+        Curso curso = Curso.instance(1, "Nuevo Curso", new ArrayList<>(), LocalDateTime.of(2019, 12, 31, 0, 0, 0),
+                10);
         ConsultarCursoPorIdUseCase consultarCursoPorIdUseCase = new ConsultarCursoPorIdUseCase(iRepositorioConsultarCursoPorId);
         when(iRepositorioConsultarCursoPorId.findByIdCurso(1)).thenReturn(curso);
         Curso buscado = consultarCursoPorIdUseCase.consultarCursoPorId(1);

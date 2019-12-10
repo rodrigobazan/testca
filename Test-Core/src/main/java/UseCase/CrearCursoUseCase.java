@@ -1,11 +1,14 @@
 package UseCase;
 
 import Excepciones.CursoExisteException;
+import Excepciones.FechaLimiteIncorrectaException;
 import Excepciones.PersistException;
 import Input.CrearCursoInput;
 import Model.Curso;
 import Repository.IRepositorioConsultarCursoPorNombre;
 import Repository.IRepositorioCrearCurso;
+
+import java.time.LocalDateTime;
 
 public class CrearCursoUseCase implements CrearCursoInput {
     private IRepositorioConsultarCursoPorNombre iRepositorioConsultarCursoPorNombre;
@@ -17,7 +20,8 @@ public class CrearCursoUseCase implements CrearCursoInput {
         this.iRepositorioCrearCurso = iRepositorioCrearCurso;
     }
 
-    public boolean crearCurso(Curso curso) throws PersistException, CursoExisteException {
+    public boolean crearCurso(Curso curso) throws PersistException, CursoExisteException, FechaLimiteIncorrectaException {
+        if (curso.getFechaLimiteInscripcion().isBefore(LocalDateTime.now())) throw new FechaLimiteIncorrectaException();
         if (!existeCurso(curso.getTitulo())) {
             if (this.iRepositorioCrearCurso.persist(curso)) {
                 return true;

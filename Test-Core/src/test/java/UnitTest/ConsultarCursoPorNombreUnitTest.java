@@ -27,7 +27,7 @@ public class ConsultarCursoPorNombreUnitTest {
         ConsultarCursoPorNombreUseCase consultarCursoPorNombreUseCase = new ConsultarCursoPorNombreUseCase(iRepositorioConsultarCursoPorNombre);
         when(iRepositorioConsultarCursoPorNombre.findByTituloEquals("Nuevo Curso"))
                 .thenReturn(Curso.instance(1, "Nuevo Curso", new ArrayList<>(),
-                        LocalDateTime.of(2019, 12, 31, 0, 0, 0)));
+                        LocalDateTime.now().plusDays(5), 10));
         Curso buscado = consultarCursoPorNombreUseCase.consultarCursoPorNombre("Nuevo Curso");
         Assertions.assertNotNull(buscado);
     }

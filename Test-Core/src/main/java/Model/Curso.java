@@ -14,22 +14,23 @@ public class Curso {
     private String titulo;
     private Collection<Cuenta> inscriptos;
     private LocalDateTime fechaLimiteInscripcion;
+    private Integer puntos;
 
-    private Curso(Integer idCurso, String titulo, Collection<Cuenta> inscriptos, LocalDateTime fechaLimiteInscripcion) {
+    private Curso(Integer idCurso, String titulo, Collection<Cuenta> inscriptos, LocalDateTime fechaLimiteInscripcion,
+                  Integer puntos) {
         this.idCurso = idCurso;
         this.titulo = titulo;
         this.inscriptos = inscriptos;
         this.fechaLimiteInscripcion = fechaLimiteInscripcion;
+        this.puntos = puntos;
     }
 
-    public static Curso instance(Integer idCurso, String titulo, Collection<Cuenta> inscriptos, LocalDateTime fechaLimiteInscripcion) throws CursoIncompletoException, FechaLimiteIncorrectaException {
-        if (titulo == null || titulo.isEmpty() || fechaLimiteInscripcion == null) {
+    public static Curso instance(Integer idCurso, String titulo, Collection<Cuenta> inscriptos,
+                                 LocalDateTime fechaLimiteInscripcion, Integer puntos) throws CursoIncompletoException {
+        if (titulo == null || titulo.isEmpty() || fechaLimiteInscripcion == null || puntos == null) {
             throw new CursoIncompletoException();
         }
-        if (fechaLimiteInscripcion.isBefore(LocalDateTime.now())) {
-            throw new FechaLimiteIncorrectaException();
-        }
-        return new Curso(idCurso, titulo, inscriptos, fechaLimiteInscripcion);
+        return new Curso(idCurso, titulo, inscriptos, fechaLimiteInscripcion, puntos);
     }
 
     public Integer getIdCurso() {
@@ -46,5 +47,15 @@ public class Curso {
 
     public LocalDateTime getFechaLimiteInscripcion() {
         return fechaLimiteInscripcion;
+    }
+
+    public Integer getPuntos() {
+        return puntos;
+    }
+
+    public void modificarDatos(Curso cursoModificado) {
+        this.inscriptos = cursoModificado.inscriptos;
+        this.titulo = cursoModificado.titulo;
+        this.fechaLimiteInscripcion = cursoModificado.fechaLimiteInscripcion;
     }
 }
