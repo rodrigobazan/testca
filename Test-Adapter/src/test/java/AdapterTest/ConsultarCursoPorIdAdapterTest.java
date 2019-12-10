@@ -25,7 +25,8 @@ public class ConsultarCursoPorIdAdapterTest {
 
     @Test
     void consultarCursoPorId_ExisteId_DevuelveCursoDTO() throws FechaLimiteIncorrectaException, CursoIncompletoException {
-        Curso curso = Curso.instance(1, "Nuevo Curso", new ArrayList<>(), LocalDateTime.of(2019, 12, 31, 0, 0, 0));
+        Curso curso = Curso.instance(1, "Nuevo Curso", new ArrayList<>(),
+                LocalDateTime.now().plusDays(5), 10);
         ConsultarCursoPorIdAdapter consultarCursoPorIdAdapter = new ConsultarCursoPorIdAdapter(consultarCursoPorIdInput);
         when(consultarCursoPorIdInput.consultarCursoPorId(1)).thenReturn(curso);
         CursoDTO cursoDTO = consultarCursoPorIdAdapter.consultarCursoPorId(1);

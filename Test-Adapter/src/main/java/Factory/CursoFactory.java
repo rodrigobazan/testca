@@ -1,7 +1,12 @@
 package Factory;
 
+import Model.Cuenta;
 import Model.Curso;
+import ModelDTO.CuentaDTO;
 import ModelDTO.CursoDTO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CursoFactory {
 
@@ -10,7 +15,9 @@ public class CursoFactory {
 
     public static CursoDTO factoryCoreDTO(Curso curso) {
         try {
-            return new CursoDTO(curso.getIdCurso(), curso.getTitulo(), curso.getInscriptos(), curso.getFechaLimiteInscripcion());
+            List<CuentaDTO> cuentas = new ArrayList<>();
+            curso.getInscriptos().forEach(cuenta -> cuentas.add(CuentaFactory.factoryCoreDTO(cuenta)));
+            return new CursoDTO(curso.getIdCurso(), curso.getTitulo(), cuentas, curso.getFechaLimiteInscripcion(), curso.getPuntos());
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -19,7 +26,9 @@ public class CursoFactory {
 
     public static Curso factoryDTOCore(CursoDTO cursoDTO) {
         try {
-            return Curso.instance(cursoDTO.idCurso, cursoDTO.titulo, cursoDTO.inscriptos, cursoDTO.fechaLimiteInscripcion);
+            List<Cuenta> cuentas = new ArrayList<>();
+            cursoDTO.inscriptos.forEach(cuentaDTO -> cuentas.add(CuentaFactory.factoryDTOCore(cuentaDTO)));
+            return Curso.instance(cursoDTO.idCurso, cursoDTO.titulo, cuentas, cursoDTO.fechaLimiteInscripcion, cursoDTO.puntos);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

@@ -1,6 +1,7 @@
 package Adapter;
 
 import Excepciones.CursoExisteException;
+import Excepciones.FechaLimiteIncorrectaException;
 import Excepciones.PersistException;
 import Factory.CursoFactory;
 import Input.CrearCursoInput;
@@ -13,7 +14,7 @@ public class CrearCursoAdapter {
         this.crearCursoInput = crearCursoInput;
     }
 
-    public boolean crearCurso(CursoDTO cursoDTO) throws PersistException, CursoExisteException {
+    public boolean crearCurso(CursoDTO cursoDTO) throws PersistException, CursoExisteException, FechaLimiteIncorrectaException {
         return this.crearCursoInput.crearCurso(CursoFactory.factoryDTOCore(cursoDTO));
     }
 }

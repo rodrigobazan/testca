@@ -23,7 +23,7 @@ public class ConsultarCursoPorNombreUnitTest {
     IRepositorioConsultarCursoPorNombre iRepositorioConsultarCursoPorNombre;
 
     @Test
-    void consultarCursoPorNombre_HayCoincidencia_DevuelveCurso() throws FechaLimiteIncorrectaException, CursoIncompletoException {
+    void consultarCursoPorNombre_HayCoincidencia_DevuelveCurso() throws CursoIncompletoException {
         ConsultarCursoPorNombreUseCase consultarCursoPorNombreUseCase = new ConsultarCursoPorNombreUseCase(iRepositorioConsultarCursoPorNombre);
         when(iRepositorioConsultarCursoPorNombre.findByTituloEquals("Nuevo Curso"))
                 .thenReturn(Curso.instance(1, "Nuevo Curso", new ArrayList<>(),
@@ -33,7 +33,7 @@ public class ConsultarCursoPorNombreUnitTest {
     }
 
     @Test
-    void consultarCursoPorNombre_NoHayCoincidencia_DevuelveNull() throws FechaLimiteIncorrectaException, CursoIncompletoException {
+    void consultarCursoPorNombre_NoHayCoincidencia_DevuelveNull() {
         ConsultarCursoPorNombreUseCase consultarCursoPorNombreUseCase = new ConsultarCursoPorNombreUseCase(iRepositorioConsultarCursoPorNombre);
         when(iRepositorioConsultarCursoPorNombre.findByTituloEquals("Nuevo Curso"))
                 .thenReturn(null);

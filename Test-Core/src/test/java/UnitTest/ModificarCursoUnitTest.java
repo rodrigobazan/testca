@@ -46,7 +46,7 @@ public class ModificarCursoUnitTest {
     }
 
     @Test
-    void modificarCurso_ExisteCursoNombre_CursoExisteException() throws FechaLimiteIncorrectaException, CursoIncompletoException, UpdateCuentaException, CursoExisteException {
+    void modificarCurso_ExisteCursoNombre_CursoExisteException() throws CursoIncompletoException {
         Curso cursoModificado = Curso.instance(1, "Ionic 4", new ArrayList<>(), LocalDateTime.now().plusDays(5), 10);
         Curso curso = Curso.instance(1, "Nuevo Curso", new ArrayList<>(), LocalDateTime.now().plusDays(5), 10);
         ModificarCursoUseCase modificarCursoUseCase = new ModificarCursoUseCase(iRepositorioConsultarCursoPorId,
@@ -59,7 +59,7 @@ public class ModificarCursoUnitTest {
 
 
     @Test
-    void modificarCurso_FechaIncorrecta_FechaLimiteIncorrectaException() throws FechaLimiteIncorrectaException, CursoIncompletoException, UpdateCuentaException, CursoExisteException {
+    void modificarCurso_FechaIncorrecta_FechaLimiteIncorrectaException() throws CursoIncompletoException {
         Curso cursoModificado = Curso.instance(1, "Ionic 4", new ArrayList<>(), LocalDateTime.now().minusDays(10), 10);
         Curso curso = Curso.instance(1, "Nuevo Curso", new ArrayList<>(), LocalDateTime.now().plusDays(5), 10);
         ModificarCursoUseCase modificarCursoUseCase = new ModificarCursoUseCase(iRepositorioConsultarCursoPorId,

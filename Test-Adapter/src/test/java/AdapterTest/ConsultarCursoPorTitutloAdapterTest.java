@@ -27,7 +27,7 @@ public class ConsultarCursoPorTitutloAdapterTest {
     void consultarCursoPorTitulo_HayCoincidencia_DevuelveCursoDTO() throws FechaLimiteIncorrectaException, CursoIncompletoException {
         ConsultarCursoAdapter consultarCursoAdapter = new ConsultarCursoAdapter(consultarCursoPorNombreInput);
         when(consultarCursoPorNombreInput.consultarCursoPorNombre("Nuevo Curso"))
-                .thenReturn(Curso.instance(1, "Nuevo Curso", new ArrayList<>(), LocalDateTime.of(2019, 12, 31, 0, 0, 0)));
+                .thenReturn(Curso.instance(1, "Nuevo Curso", new ArrayList<>(), LocalDateTime.now().plusDays(5), 10));
         CursoDTO buscado = consultarCursoAdapter.consultarCurso("Nuevo Curso");
         Assertions.assertEquals(1, buscado.idCurso.intValue());
     }

@@ -2,6 +2,7 @@ package AdapterTest;
 
 import Adapter.CrearCursoAdapter;
 import Excepciones.CursoExisteException;
+import Excepciones.FechaLimiteIncorrectaException;
 import Excepciones.PersistException;
 import Input.CrearCursoInput;
 import Mockito.MockitoExtension;
@@ -25,9 +26,9 @@ public class CrearCursoAdapterTest {
     CrearCursoInput crearCursoInput;
 
     @Test
-    void crearCurso_NoExisteNombreCurso_CreaCorrectamente() throws PersistException, CursoExisteException {
+    void crearCurso_NoExisteNombreCurso_CreaCorrectamente() throws PersistException, CursoExisteException, FechaLimiteIncorrectaException {
         CursoDTO cursoDTO = new CursoDTO(null, "Nuevo Curso", new ArrayList<>(),
-                LocalDateTime.of(2019, 12, 31, 0, 0, 0));
+                LocalDateTime.now().plusDays(5), 10);
         CrearCursoAdapter crearCursoAdapter = new CrearCursoAdapter(crearCursoInput);
         when(crearCursoInput.crearCurso(any(Curso.class))).thenReturn(true);
         boolean resultado = crearCursoAdapter.crearCurso(cursoDTO);
@@ -35,9 +36,9 @@ public class CrearCursoAdapterTest {
     }
 
     @Test
-    void crearCurso_ExisteNombreCurso_CursoExisteException() throws PersistException, CursoExisteException {
+    void crearCurso_ExisteNombreCurso_CursoExisteException() throws PersistException, CursoExisteException, FechaLimiteIncorrectaException {
         CursoDTO cursoDTO = new CursoDTO(null, "Nuevo Curso", new ArrayList<>(),
-                LocalDateTime.of(2019, 12, 31, 0, 0, 0));
+                LocalDateTime.now().plusDays(5), 10);
         CrearCursoAdapter crearCursoAdapter = new CrearCursoAdapter(crearCursoInput);
         when(crearCursoInput.crearCurso(any(Curso.class))).thenThrow(CursoExisteException.class);
         Assertions.assertThrows(CursoExisteException.class, () -> crearCursoAdapter.crearCurso(cursoDTO));
