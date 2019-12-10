@@ -16,4 +16,13 @@ public class CursoFactory {
             return null;
         }
     }
+
+    public static Curso mapeoDTOCore(CursoDTO cursoDTO) {
+        try {
+            return Curso.instance(cursoDTO.idCurso, cursoDTO.titulo, cursoDTO.inscriptos, cursoDTO.fechaLimiteInscripcion);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
