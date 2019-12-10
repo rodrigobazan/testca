@@ -14,6 +14,6 @@ public class CrearCursoAdapter {
     }
 
     public boolean crearCurso(CursoDTO cursoDTO) throws PersistException, CursoExisteException {
-        return this.crearCursoInput.crearCurso(CursoFactory.mapeoDTOCore(cursoDTO));
+        return this.crearCursoInput.crearCurso(CursoFactory.factoryDTOCore(cursoDTO));
     }
 }

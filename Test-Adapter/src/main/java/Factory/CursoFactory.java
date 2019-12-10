@@ -17,7 +17,7 @@ public class CursoFactory {
         }
     }
 
-    public static Curso mapeoDTOCore(CursoDTO cursoDTO) {
+    public static Curso factoryDTOCore(CursoDTO cursoDTO) {
         try {
             return Curso.instance(cursoDTO.idCurso, cursoDTO.titulo, cursoDTO.inscriptos, cursoDTO.fechaLimiteInscripcion);
         } catch (Exception e) {
