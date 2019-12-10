@@ -8,3 +8,5 @@ Test-Boundaries/.mvn/
 Test-Boundaries/mvnw
 
 Test-Boundaries/mvnw.cmd
+
+Test-Adapter/target/

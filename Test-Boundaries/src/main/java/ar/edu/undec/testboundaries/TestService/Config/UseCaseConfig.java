@@ -1,10 +1,7 @@
 package ar.edu.undec.testboundaries.TestService.Config;
 
 import Repository.*;
-import UseCase.ConsultarCuentasUseCase;
-import UseCase.CrearCuentaUseCase;
-import UseCase.CrearCursoUseCase;
-import UseCase.ModificarCuentaUseCase;
+import UseCase.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,13 +22,19 @@ public class UseCaseConfig {
 
     private final IRepositorioConsultarCursoPorNombre iRepositorioConsultarCursoPorNombre;
 
+    private final IRepositorioConsultarCursoPorId iRepositorioConsultarCursoPorId;
+
+    private final IRepositorioModificarCurso iRepositorioModificarCurso;
+
     public UseCaseConfig(IRepositorioCrearCuenta iRepositorioCrearCuenta,
                          IRepositorioConsultarCuentaPorUsuario iRepositorioConsultarCuentaPorUsuario,
                          IRepositorioConsultarCuentaPorId iRepositorioConsultarCuentaPorId,
                          IRepositorioModificarCuenta iRepositorioModificarCuenta,
                          IRepositorioConsultarCuentas iRepositorioConsultarCuentas,
                          IRepositorioCrearCurso iRepositorioCrearCurso,
-                         IRepositorioConsultarCursoPorNombre iRepositorioConsultarCursoPorNombre) {
+                         IRepositorioConsultarCursoPorNombre iRepositorioConsultarCursoPorNombre,
+                         IRepositorioConsultarCursoPorId iRepositorioConsultarCursoPorId,
+                         IRepositorioModificarCurso iRepositorioModificarCurso) {
         this.iRepositorioCrearCuenta = iRepositorioCrearCuenta;
         this.iRepositorioConsultarCuentaPorUsuario = iRepositorioConsultarCuentaPorUsuario;
         this.iRepositorioConsultarCuentaPorId = iRepositorioConsultarCuentaPorId;
@@ -39,6 +42,8 @@ public class UseCaseConfig {
         this.iRepositorioConsultarCuentas = iRepositorioConsultarCuentas;
         this.iRepositorioCrearCurso = iRepositorioCrearCurso;
         this.iRepositorioConsultarCursoPorNombre = iRepositorioConsultarCursoPorNombre;
+        this.iRepositorioConsultarCursoPorId = iRepositorioConsultarCursoPorId;
+        this.iRepositorioModificarCurso = iRepositorioModificarCurso;
     }
 
     @Bean
@@ -60,6 +65,11 @@ public class UseCaseConfig {
     @Bean
     public CrearCursoUseCase crearCursoUseCase() {
         return new CrearCursoUseCase(iRepositorioConsultarCursoPorNombre, iRepositorioCrearCurso);
+    }
+
+    @Bean
+    public ModificarCursoUseCase modificarCursoUseCase() {
+        return new ModificarCursoUseCase(iRepositorioConsultarCursoPorId, iRepositorioConsultarCursoPorNombre, iRepositorioModificarCurso);
     }
 
 }
