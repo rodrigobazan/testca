@@ -23,7 +23,7 @@ public class ConsultarCuentaPorIdAdapterTest {
     ConsultarCuentaPorIdInput consultarCuentaPorIdInput;
 
     @Test
-    void consultarCuentaPorId_existeId_DevuelveCuentaDTO() throws CuentaIncompletaException, FechaCreacionIncorrectaException {
+    void consultarCuentaPorId_existeId_DevuelveCuentConsultarCuentaPorIdAdapterTestaDTO() throws CuentaIncompletaException, FechaCreacionIncorrectaException {
         ConsultarCuentaPorIdAdapter consultarCuentaPorIdAdapter = new ConsultarCuentaPorIdAdapter(consultarCuentaPorIdInput);
         when(consultarCuentaPorIdInput.consultarCuentaPorId(1)).thenReturn(Cuenta.instance(1, "rabazan",
                 LocalDateTime.now(), "Rodrigo Bazan", "123546"));
