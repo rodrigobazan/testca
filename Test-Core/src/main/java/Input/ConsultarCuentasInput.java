@@ -4,6 +4,6 @@ import Model.Cuenta;
 
 import java.util.List;
 
-public interface ConsultarCuentaInput {
+public interface ConsultarCuentasInput {
     List<Cuenta> consultarCuentas();
 }

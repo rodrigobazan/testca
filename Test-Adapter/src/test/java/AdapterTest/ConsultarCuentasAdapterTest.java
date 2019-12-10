@@ -1,9 +1,10 @@
-package UnitTest;
+package AdapterTest;
 
+import Adapter.ConsultarCuentasAdapter;
+import Input.ConsultarCuentasInput;
 import Mockito.MockitoExtension;
 import Model.Cuenta;
-import Repository.IRepositorioConsultarCuentas;
-import UseCase.ConsultarCuentasUseCase;
+import ModelDTO.CuentaDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,28 +18,28 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ConsultarCuentasUnitTest {
+public class ConsultarCuentasAdapterTest {
 
     @Mock
-    IRepositorioConsultarCuentas iRepositorioConsultarCuentas;
+    ConsultarCuentasInput consultarCuentasInput;
 
     @Spy
     List<Cuenta> cuentas = factoryCuentas();
 
     @Test
-    void consultarCuentas_ExistenCuentas_DevuelveListaCuentas() {
-        ConsultarCuentasUseCase consultarCuentaUseCase = new ConsultarCuentasUseCase(iRepositorioConsultarCuentas);
-        when(iRepositorioConsultarCuentas.findAll()).thenReturn(cuentas);
-        List<Cuenta> cuentas = consultarCuentaUseCase.consultarCuentas();
-        Assertions.assertEquals(3, cuentas.size());
+    void consultaCuentas_ExisteCuentas_DevuelveListaCuentasDTO() {
+        ConsultarCuentasAdapter consultarCuentasAdapter = new ConsultarCuentasAdapter(consultarCuentasInput);
+        when(consultarCuentasInput.consultarCuentas()).thenReturn(cuentas);
+        List<CuentaDTO> cuentaDTOS = consultarCuentasAdapter.consultarCuentas();
+        Assertions.assertEquals(3, cuentaDTOS.size());
     }
 
     @Test
-    void consultarCuentas_NoExistenCuentas_DevuelveListaVacia() {
-        ConsultarCuentasUseCase consultarCuentaUseCase = new ConsultarCuentasUseCase(iRepositorioConsultarCuentas);
-        when(iRepositorioConsultarCuentas.findAll()).thenReturn(new ArrayList<>());
-        List<Cuenta> cuentas = consultarCuentaUseCase.consultarCuentas();
-        Assertions.assertEquals(0, cuentas.size());
+    void consultaCuentas_NoExisteCuentas_DevuelveListaVacia() {
+        ConsultarCuentasAdapter consultarCuentasAdapter = new ConsultarCuentasAdapter(consultarCuentasInput);
+        when(consultarCuentasInput.consultarCuentas()).thenReturn(new ArrayList<>());
+        List<CuentaDTO> cuentaDTOS = consultarCuentasAdapter.consultarCuentas();
+        Assertions.assertEquals(0, cuentaDTOS.size());
     }
 
 
@@ -54,6 +55,5 @@ public class ConsultarCuentasUnitTest {
             return new ArrayList<>();
         }
     }
-
 
 }

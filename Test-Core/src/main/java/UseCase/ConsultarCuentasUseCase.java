@@ -1,15 +1,15 @@
 package UseCase;
 
-import Input.ConsultarCuentaInput;
+import Input.ConsultarCuentasInput;
 import Model.Cuenta;
 import Repository.IRepositorioConsultarCuentas;
 
 import java.util.List;
 
-public class ConsultarCuentaUseCase implements ConsultarCuentaInput {
+public class ConsultarCuentasUseCase implements ConsultarCuentasInput {
     private IRepositorioConsultarCuentas iRepositorioConsultarCuentas;
 
-    public ConsultarCuentaUseCase(IRepositorioConsultarCuentas iRepositorioConsultarCuentas) {
+    public ConsultarCuentasUseCase(IRepositorioConsultarCuentas iRepositorioConsultarCuentas) {
         this.iRepositorioConsultarCuentas = iRepositorioConsultarCuentas;
     }
 
