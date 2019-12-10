@@ -41,7 +41,7 @@ public class CrearCursoServiceIT {
         curso.put("idCurso", null);
         curso.put("titulo", "Nuevo Curso");
         curso.put("inscriptos", new JSONArray());
-        curso.put("fechaLimiteInscripcion", LocalDateTime.of(2019, 12, 31, 0, 0, 0));
+        curso.put("fechaLimiteInscripcion", LocalDateTime.now().plusDays(5));
         HttpPost post = new HttpPost(url + "/curso");
         StringEntity se = new StringEntity(curso.toString());
         se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
@@ -59,7 +59,7 @@ public class CrearCursoServiceIT {
         curso.put("idCurso", null);
         curso.put("titulo", "Nuevo Curso");
         curso.put("inscriptos", new JSONArray());
-        curso.put("fechaLimiteInscripcion", LocalDateTime.of(2019, 12, 31, 0, 0, 0));
+        curso.put("fechaLimiteInscripcion", LocalDateTime.now().plusDays(5));
         HttpPost post = new HttpPost(url + "/curso");
         StringEntity se = new StringEntity(curso.toString());
         se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));

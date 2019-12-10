@@ -29,7 +29,7 @@ public class CrearCursoIntegrationTest {
 
     @Test
     public void persist_DatosCorrectos_GuardaCorrectamente() throws FechaLimiteIncorrectaException, CursoIncompletoException {
-        Curso curso = Curso.instance(null, "Nuevo Curso", new ArrayList<>(), LocalDateTime.of(2019, 12, 31, 0, 0, 0));
+        Curso curso = Curso.instance(null, "Nuevo Curso", new ArrayList<>(), LocalDateTime.now().plusDays(5), 10);
         boolean resultado = iRepositorioCrearCursoImplementacion.persist(curso);
         Assertions.assertTrue(resultado);
     }

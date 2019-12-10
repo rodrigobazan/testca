@@ -24,13 +24,17 @@ public class CursoEntity {
     @Column(name = "fechalimiteinscripcion")
     private LocalDateTime fechaLimiteInscripcion;
 
+    @Column(name = "puntos")
+    private Integer puntos;
+
     public CursoEntity() {
     }
 
-    public CursoEntity(String titulo, Collection<CuentaEntity> inscriptos, LocalDateTime fechaLimiteInscripcion) {
+    public CursoEntity(String titulo, Collection<CuentaEntity> inscriptos, LocalDateTime fechaLimiteInscripcion, Integer puntos) {
         this.titulo = titulo;
         this.inscriptos = inscriptos;
         this.fechaLimiteInscripcion = fechaLimiteInscripcion;
+        this.puntos = puntos;
     }
 
     public Integer getIdCurso() {
@@ -63,5 +67,13 @@ public class CursoEntity {
 
     public void setFechaLimiteInscripcion(LocalDateTime fechaLimiteInscripcion) {
         this.fechaLimiteInscripcion = fechaLimiteInscripcion;
+    }
+
+    public Integer getPuntos() {
+        return puntos;
+    }
+
+    public void setPuntos(Integer puntos) {
+        this.puntos = puntos;
     }
 }

@@ -30,7 +30,8 @@ public class ModificarCuentaIntegrationTest {
     public void update_DatosCorrectos_ModificaCorrectamente() throws CuentaIncompletaException, FechaCreacionIncorrectaException {
         Cuenta cuentaModificada = Cuenta.instance(10, "rabazan", LocalDateTime.now(),
                 "Rodrigo Andres Bazan", "654321");
-        Assertions.assertEquals("rabazan", cuentaModificada.getUsuario());
+        boolean resultado = this.iRepositorioModificarCuentaImplementacion.update(cuentaModificada);
+        Assertions.assertTrue(resultado);
     }
 
 }

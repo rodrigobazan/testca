@@ -2,6 +2,7 @@ package ar.edu.undec.testboundaries.TestService.Controller;
 
 import Adapter.CrearCursoAdapter;
 import Excepciones.CursoExisteException;
+import Excepciones.FechaLimiteIncorrectaException;
 import Excepciones.PersistException;
 import ModelDTO.CursoDTO;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,8 @@ public class CrearCursoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (CursoExisteException e) {
             e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(e.mensaje());
+        } catch (FechaLimiteIncorrectaException e) {
             return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(e.mensaje());
         }
     }
