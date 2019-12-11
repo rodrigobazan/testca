@@ -1,9 +1,6 @@
 package UnitTest;
 
-import Excepciones.CursoExisteException;
-import Excepciones.CursoIncompletoException;
-import Excepciones.FechaLimiteIncorrectaException;
-import Excepciones.UpdateCuentaException;
+import Excepciones.*;
 import Mockito.MockitoExtension;
 import Model.Curso;
 import Repository.IRepositorioConsultarCursoPorId;
@@ -33,7 +30,7 @@ public class ModificarCursoUnitTest {
     IRepositorioModificarCurso iRepositorioModificarCurso;
 
     @Test
-    void modificarCurso_NoExisteCursoNombre_ModificaCorrectamente() throws FechaLimiteIncorrectaException, CursoIncompletoException, UpdateCuentaException, CursoExisteException {
+    void modificarCurso_NoExisteCursoNombre_ModificaCorrectamente() throws FechaLimiteIncorrectaException, CursoIncompletoException, CursoExisteException, UpdateCursoException {
         Curso cursoModificado = Curso.instance(1, "Ionic 4", new ArrayList<>(), LocalDateTime.now().plusDays(5), 10);
         Curso curso = Curso.instance(1, "Nuevo Curso", new ArrayList<>(), LocalDateTime.now().plusDays(5), 10);
         ModificarCursoUseCase modificarCursoUseCase = new ModificarCursoUseCase(iRepositorioConsultarCursoPorId,

@@ -58,4 +58,13 @@ public class Curso {
         this.titulo = cursoModificado.titulo;
         this.fechaLimiteInscripcion = cursoModificado.fechaLimiteInscripcion;
     }
+
+    public boolean estaInscripto(Integer idCuenta) {
+        return this.inscriptos.stream().filter(cuenta -> cuenta.getIdCuenta().intValue() == idCuenta)
+                .findAny().orElse(null) != null;
+    }
+
+    public void inscribir(Cuenta cuenta) {
+        this.inscriptos.add(cuenta);
+    }
 }

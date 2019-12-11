@@ -3,6 +3,7 @@ package UseCase;
 import Excepciones.CursoExisteException;
 import Excepciones.FechaLimiteIncorrectaException;
 import Excepciones.UpdateCuentaException;
+import Excepciones.UpdateCursoException;
 import Input.ModificarCursoInput;
 import Model.Curso;
 import Repository.IRepositorioConsultarCursoPorId;
@@ -24,7 +25,7 @@ public class ModificarCursoUseCase implements ModificarCursoInput {
         this.iRepositorioModificarCurso = iRepositorioModificarCurso;
     }
 
-    public Curso modificarCurso(Curso cursoModificado) throws UpdateCuentaException, CursoExisteException, FechaLimiteIncorrectaException {
+    public Curso modificarCurso(Curso cursoModificado) throws CursoExisteException, FechaLimiteIncorrectaException, UpdateCursoException {
         Curso cursoAModificar = this.iRepositorioConsultarCursoPorId.findByIdCurso(cursoModificado.getIdCurso());
         if ((cursoAModificar.getTitulo().equalsIgnoreCase(cursoModificado.getTitulo()) ||
                 !cursoExiste(cursoModificado.getTitulo()))) {
@@ -32,7 +33,7 @@ public class ModificarCursoUseCase implements ModificarCursoInput {
                 cursoAModificar.modificarDatos(cursoModificado);
                 if (this.iRepositorioModificarCurso.update(cursoAModificar)) {
                     return cursoAModificar;
-                } else throw new UpdateCuentaException();
+                } else throw new UpdateCursoException();
             }else throw new FechaLimiteIncorrectaException();
 
         } else throw new CursoExisteException();
