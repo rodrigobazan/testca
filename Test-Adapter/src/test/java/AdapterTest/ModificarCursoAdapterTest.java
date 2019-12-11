@@ -1,10 +1,7 @@
 package AdapterTest;
 
 import Adapter.ModificarCursoAdapter;
-import Excepciones.CursoExisteException;
-import Excepciones.CursoIncompletoException;
-import Excepciones.FechaLimiteIncorrectaException;
-import Excepciones.UpdateCuentaException;
+import Excepciones.*;
 import Input.ModificarCursoInput;
 import Mockito.MockitoExtension;
 import Model.Curso;
@@ -27,7 +24,7 @@ public class ModificarCursoAdapterTest {
     ModificarCursoInput modificarCursoInput;
 
     @Test
-    void modificarCurso_NoExisteCursoNombre_ModificaCorrectamente() throws FechaLimiteIncorrectaException, CursoExisteException, UpdateCuentaException, CursoIncompletoException {
+    void modificarCurso_NoExisteCursoNombre_ModificaCorrectamente() throws FechaLimiteIncorrectaException, CursoExisteException, CursoIncompletoException, UpdateCursoException {
         CursoDTO cursoDTO = new CursoDTO(1, "Ionic 4", new ArrayList<>(), LocalDateTime.now().plusDays(5), 10);
         ModificarCursoAdapter modificarCursoAdapter = new ModificarCursoAdapter(modificarCursoInput);
         when(modificarCursoInput.modificarCurso(any(Curso.class))).thenReturn(Curso.instance(1, "Ionic 4", new ArrayList<>(),
@@ -38,7 +35,7 @@ public class ModificarCursoAdapterTest {
 
 
     @Test
-    void modificarCurso_ExisteCursoNombre_CursoExisteException() throws FechaLimiteIncorrectaException, CursoExisteException, UpdateCuentaException {
+    void modificarCurso_ExisteCursoNombre_CursoExisteException() throws FechaLimiteIncorrectaException, CursoExisteException, UpdateCursoException {
         CursoDTO cursoDTO = new CursoDTO(1, "Ionic 4", new ArrayList<>(), LocalDateTime.now().plusDays(5), 10);
         ModificarCursoAdapter modificarCursoAdapter = new ModificarCursoAdapter(modificarCursoInput);
         when(modificarCursoInput.modificarCurso(any(Curso.class))).thenThrow(CursoExisteException.class);

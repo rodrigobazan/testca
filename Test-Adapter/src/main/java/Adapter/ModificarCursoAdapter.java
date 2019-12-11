@@ -3,6 +3,7 @@ package Adapter;
 import Excepciones.CursoExisteException;
 import Excepciones.FechaLimiteIncorrectaException;
 import Excepciones.UpdateCuentaException;
+import Excepciones.UpdateCursoException;
 import Factory.CursoFactory;
 import Input.ModificarCursoInput;
 import Model.Curso;
@@ -15,7 +16,7 @@ public class ModificarCursoAdapter {
         this.modificarCursoInput = modificarCursoInput;
     }
 
-    public CursoDTO modificarCurso(CursoDTO cursoDTO) throws FechaLimiteIncorrectaException, CursoExisteException, UpdateCuentaException {
+    public CursoDTO modificarCurso(CursoDTO cursoDTO) throws FechaLimiteIncorrectaException, CursoExisteException, UpdateCursoException {
         Curso curso = this.modificarCursoInput.modificarCurso(CursoFactory.factoryDTOCore(cursoDTO));
         if (curso != null) return CursoFactory.factoryCoreDTO(curso);
         return null;
