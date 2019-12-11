@@ -17,6 +17,7 @@ public class AdapterConfig {
     private final InscripcionCursoInput inscripcionCursoInput;
     private final ConsultarPuntosInput consultarPuntosInput;
     private final ObtenerPromedioInscriptosInput obtenerPromedioInscriptosInput;
+    private final ObtenerCursoMayorInscriptoInput obtenerCursoMayorInscriptoInput;
 
     public AdapterConfig(CrearCuentaInput crearCuentaInput,
                          ModificarCuentaInput modificarCuentaInput,
@@ -26,7 +27,8 @@ public class AdapterConfig {
                          ConsultarCursosInput consultarCursosInput,
                          InscripcionCursoInput inscripcionCursoInput,
                          ConsultarPuntosInput consultarPuntosInput,
-                         ObtenerPromedioInscriptosInput obtenerPromedioInscriptosInput) {
+                         ObtenerPromedioInscriptosInput obtenerPromedioInscriptosInput,
+                         ObtenerCursoMayorInscriptoInput obtenerCursoMayorInscriptoInput) {
         this.crearCuentaInput = crearCuentaInput;
         this.modificarCuentaInput = modificarCuentaInput;
         this.consultarCuentasInput = consultarCuentasInput;
@@ -36,6 +38,7 @@ public class AdapterConfig {
         this.inscripcionCursoInput = inscripcionCursoInput;
         this.consultarPuntosInput = consultarPuntosInput;
         this.obtenerPromedioInscriptosInput = obtenerPromedioInscriptosInput;
+        this.obtenerCursoMayorInscriptoInput = obtenerCursoMayorInscriptoInput;
     }
 
     @Bean
@@ -81,6 +84,11 @@ public class AdapterConfig {
     @Bean
     public ObtenerPromedioInscriptosAdapter obtenerPromedioInscriptosAdapter() {
         return new ObtenerPromedioInscriptosAdapter(obtenerPromedioInscriptosInput);
+    }
+
+    @Bean
+    public ObtenerCursoMayorInscriptoAdapter obtenerCursoMayorInscriptoAdapter() {
+        return new ObtenerCursoMayorInscriptoAdapter(obtenerCursoMayorInscriptoInput);
     }
 
 

@@ -100,4 +100,9 @@ public class UseCaseConfig {
         return new ObtenerPromedioInscriptosUseCase(iRepositorioConsultarCursos);
     }
 
+    @Bean
+    public ObtenerCursoMayorInscriptosUseCase obtenerCursoMayorInscriptosUseCase() {
+        return new ObtenerCursoMayorInscriptosUseCase(iRepositorioConsultarCursos);
+    }
+
 }

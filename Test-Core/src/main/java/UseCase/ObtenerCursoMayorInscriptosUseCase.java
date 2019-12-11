@@ -21,7 +21,7 @@ public class ObtenerCursoMayorInscriptosUseCase implements ObtenerCursoMayorInsc
         Curso curso = cursos.stream()
                 .max(Comparator.comparingInt(value -> value.getInscriptos().size()))
                 .orElse(null);
-        if (curso.getInscriptos().isEmpty()) throw new NoExisteInscriptosException();
+        if (curso == null || curso.getInscriptos().isEmpty()) throw new NoExisteInscriptosException();
         return curso;
     }
 }
