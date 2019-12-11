@@ -33,7 +33,6 @@ public class ModificarCursoServiceIT {
 
     private String url = "http://localhost:8080/";
 
-
     @Test
     @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:ScriptSql/ServiceSql/ModificarCursoAntes.sql")
     public void A_ModificarCurso_DatosCorrectos_Devuelve200() throws JSONException, IOException {

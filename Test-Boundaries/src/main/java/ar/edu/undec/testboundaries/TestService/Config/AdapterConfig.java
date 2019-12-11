@@ -16,6 +16,7 @@ public class AdapterConfig {
     private final ConsultarCursosInput consultarCursosInput;
     private final InscripcionCursoInput inscripcionCursoInput;
     private final ConsultarPuntosInput consultarPuntosInput;
+    private final ObtenerPromedioInscriptosInput obtenerPromedioInscriptosInput;
 
     public AdapterConfig(CrearCuentaInput crearCuentaInput,
                          ModificarCuentaInput modificarCuentaInput,
@@ -24,7 +25,8 @@ public class AdapterConfig {
                          ModificarCursoInput modificarCursoInput,
                          ConsultarCursosInput consultarCursosInput,
                          InscripcionCursoInput inscripcionCursoInput,
-                         ConsultarPuntosInput consultarPuntosInput) {
+                         ConsultarPuntosInput consultarPuntosInput,
+                         ObtenerPromedioInscriptosInput obtenerPromedioInscriptosInput) {
         this.crearCuentaInput = crearCuentaInput;
         this.modificarCuentaInput = modificarCuentaInput;
         this.consultarCuentasInput = consultarCuentasInput;
@@ -33,6 +35,7 @@ public class AdapterConfig {
         this.consultarCursosInput = consultarCursosInput;
         this.inscripcionCursoInput = inscripcionCursoInput;
         this.consultarPuntosInput = consultarPuntosInput;
+        this.obtenerPromedioInscriptosInput = obtenerPromedioInscriptosInput;
     }
 
     @Bean
@@ -73,6 +76,11 @@ public class AdapterConfig {
     @Bean
     public ConsultarPuntosAdapter consultarPuntosAdapter() {
         return new ConsultarPuntosAdapter(consultarPuntosInput);
+    }
+
+    @Bean
+    public ObtenerPromedioInscriptosAdapter obtenerPromedioInscriptosAdapter() {
+        return new ObtenerPromedioInscriptosAdapter(obtenerPromedioInscriptosInput);
     }
 
 

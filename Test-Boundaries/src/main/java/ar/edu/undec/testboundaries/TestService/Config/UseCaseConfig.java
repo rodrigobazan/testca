@@ -95,4 +95,9 @@ public class UseCaseConfig {
         return new ConsultarPuntosUseCase(iRepositorioConsultarCursosUsuario);
     }
 
+    @Bean
+    public ObtenerPromedioInscriptosUseCase obtenerPromedioInscriptosUseCase() {
+        return new ObtenerPromedioInscriptosUseCase(iRepositorioConsultarCursos);
+    }
+
 }
