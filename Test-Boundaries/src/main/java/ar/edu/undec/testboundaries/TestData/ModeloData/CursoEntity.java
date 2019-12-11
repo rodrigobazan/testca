@@ -18,7 +18,7 @@ public class CursoEntity {
     @Column(name = "titulo")
     private String titulo;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Collection<CuentaEntity> inscriptos;
 
     @Column(name = "fechalimiteinscripcion")

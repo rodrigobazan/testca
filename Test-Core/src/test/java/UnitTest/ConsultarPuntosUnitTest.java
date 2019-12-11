@@ -2,7 +2,7 @@ package UnitTest;
 
 import Mockito.MockitoExtension;
 import Model.Curso;
-import Repository.IRepositorioConsultarCursosPorUsuario;
+import Repository.IRepositorioConsultarCursosUsuario;
 import UseCase.ConsultarPuntosUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -20,20 +20,20 @@ import static org.mockito.Mockito.when;
 public class ConsultarPuntosUnitTest {
 
     @Mock
-    IRepositorioConsultarCursosPorUsuario iRepositorioConsultarCursosPorUsuario;
+    IRepositorioConsultarCursosUsuario iRepositorioConsultarCursosUsuario;
 
     @Test
     void consultarPuntos_TieneCursos_DevuelveTotalPuntos() {
-        ConsultarPuntosUseCase consultarPuntosUseCase = new ConsultarPuntosUseCase(iRepositorioConsultarCursosPorUsuario);
-        when(iRepositorioConsultarCursosPorUsuario.findByUsuario("rabazan")).thenReturn(factoryCursos());
+        ConsultarPuntosUseCase consultarPuntosUseCase = new ConsultarPuntosUseCase(iRepositorioConsultarCursosUsuario);
+        when(iRepositorioConsultarCursosUsuario.findByUsuario("rabazan")).thenReturn(factoryCursos());
         int puntos = consultarPuntosUseCase.consultarPuntosCuenta("rabazan");
         Assertions.assertEquals(30, puntos);
     }
 
     @Test
     void consultarPuntos_NoTieneCursos_DevuelveCero() {
-        ConsultarPuntosUseCase consultarPuntosUseCase = new ConsultarPuntosUseCase(iRepositorioConsultarCursosPorUsuario);
-        when(iRepositorioConsultarCursosPorUsuario.findByUsuario("rabazan")).thenReturn(new ArrayList<>());
+        ConsultarPuntosUseCase consultarPuntosUseCase = new ConsultarPuntosUseCase(iRepositorioConsultarCursosUsuario);
+        when(iRepositorioConsultarCursosUsuario.findByUsuario("rabazan")).thenReturn(new ArrayList<>());
         int puntos = consultarPuntosUseCase.consultarPuntosCuenta("rabazan");
         Assertions.assertEquals(0, puntos);
     }

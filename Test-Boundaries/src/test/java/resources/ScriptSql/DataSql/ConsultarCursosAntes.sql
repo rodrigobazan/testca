@@ -1,5 +1,5 @@
 DELETE FROM curso;
 
-INSERT INTO curso VALUES(1, '2019-12-31 00:00:00', 'nuevo curso', 10);
-INSERT INTO curso VALUES(2, '2019-12-31 00:00:00', 'Ionic 4', 10);
-INSERT INTO curso VALUES(3, '2019-12-31 00:00:00', 'Ionic 5', 10);
+INSERT INTO curso VALUES(1, '2019-12-31 00:00:00', 10, 'nuevo curso');
+INSERT INTO curso VALUES(2, '2019-12-31 00:00:00', 10, 'Ionic 4');
+INSERT INTO curso VALUES(3, '2019-12-31 00:00:00', 10, 'Ionic 5');

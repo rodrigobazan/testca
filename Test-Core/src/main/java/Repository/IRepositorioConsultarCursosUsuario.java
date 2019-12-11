@@ -5,6 +5,6 @@ import Model.Curso;
 import java.util.Collection;
 import java.util.List;
 
-public interface IRepositorioConsultarCursosPorUsuario {
+public interface IRepositorioConsultarCursosUsuario {
     Collection<Curso> findByUsuario(String usuario);
 }
