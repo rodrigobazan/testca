@@ -1,12 +1,13 @@
 package UseCase;
 
+import Input.ObtenerPromedioInscriptosInput;
 import Model.Curso;
 import Repository.IRepositorioConsultarCursos;
 
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class ObtenerPromedioInscriptosUseCase {
+public class ObtenerPromedioInscriptosUseCase implements ObtenerPromedioInscriptosInput {
     private IRepositorioConsultarCursos iRepositorioConsultarCursos;
 
     public ObtenerPromedioInscriptosUseCase(IRepositorioConsultarCursos iRepositorioConsultarCursos) {
