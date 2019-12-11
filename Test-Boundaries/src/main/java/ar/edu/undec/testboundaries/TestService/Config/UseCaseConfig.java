@@ -28,6 +28,8 @@ public class UseCaseConfig {
 
     private final IRepositorioConsultarCursos iRepositorioConsultarCursos;
 
+    private final IRepositorioConsultarCursosUsuario iRepositorioConsultarCursosUsuario;
+
     public UseCaseConfig(IRepositorioCrearCuenta iRepositorioCrearCuenta,
                          IRepositorioConsultarCuentaPorUsuario iRepositorioConsultarCuentaPorUsuario,
                          IRepositorioConsultarCuentaPorId iRepositorioConsultarCuentaPorId,
@@ -36,7 +38,9 @@ public class UseCaseConfig {
                          IRepositorioCrearCurso iRepositorioCrearCurso,
                          IRepositorioConsultarCursoPorNombre iRepositorioConsultarCursoPorNombre,
                          IRepositorioConsultarCursoPorId iRepositorioConsultarCursoPorId,
-                         IRepositorioModificarCurso iRepositorioModificarCurso, IRepositorioConsultarCursos iRepositorioConsultarCursos) {
+                         IRepositorioModificarCurso iRepositorioModificarCurso,
+                         IRepositorioConsultarCursos iRepositorioConsultarCursos,
+                         IRepositorioConsultarCursosUsuario iRepositorioConsultarCursosUsuario) {
         this.iRepositorioCrearCuenta = iRepositorioCrearCuenta;
         this.iRepositorioConsultarCuentaPorUsuario = iRepositorioConsultarCuentaPorUsuario;
         this.iRepositorioConsultarCuentaPorId = iRepositorioConsultarCuentaPorId;
@@ -47,6 +51,7 @@ public class UseCaseConfig {
         this.iRepositorioConsultarCursoPorId = iRepositorioConsultarCursoPorId;
         this.iRepositorioModificarCurso = iRepositorioModificarCurso;
         this.iRepositorioConsultarCursos = iRepositorioConsultarCursos;
+        this.iRepositorioConsultarCursosUsuario = iRepositorioConsultarCursosUsuario;
     }
 
     @Bean
@@ -83,6 +88,11 @@ public class UseCaseConfig {
     @Bean
     public InscripcionCursoUseCase inscripcionCursoUseCase() {
         return new InscripcionCursoUseCase(iRepositorioModificarCurso, iRepositorioConsultarCursoPorId);
+    }
+
+    @Bean
+    public ConsultarPuntosUseCase consultarPuntosUseCase() {
+        return new ConsultarPuntosUseCase(iRepositorioConsultarCursosUsuario);
     }
 
 }

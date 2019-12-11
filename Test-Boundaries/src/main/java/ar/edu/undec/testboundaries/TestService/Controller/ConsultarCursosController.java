@@ -18,7 +18,6 @@ public class ConsultarCursosController {
 
     private ConsultarCursosAdapter consultarCursosAdapter;
 
-
     public ConsultarCursosController(ConsultarCursosAdapter consultarCursosAdapter) {
         this.consultarCursosAdapter = consultarCursosAdapter;
     }
