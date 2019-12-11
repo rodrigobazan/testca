@@ -14,7 +14,6 @@ import org.mockito.Mock;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
@@ -25,13 +24,17 @@ public class InscripcionCursoUnitTest {
     @Mock
     IRepositorioModificarCurso iRepositorioModificarCurso;
 
+    @Mock
+    IRepositorioConsultarCursoPorId iRepositorioConsultarCursoPorId;
+
     @Test
     void inscripcionCurso_NoEstaInscripto_InscribeCorrectamente() throws CursoIncompletoException, CuentaIncompletaException, FechaCreacionIncorrectaException, EstaInscriptoException, UpdateCursoException, FechaLimiteException {
         Curso curso = Curso.instance(1, "Ionic 5", new ArrayList<>(), LocalDateTime.now().plusDays(5),
                 15);
         Cuenta cuenta = Cuenta.instance(1, "rabazan", LocalDateTime.now().minusDays(5), "Rodrigo Bazan", "123456");
-        InscripcionCursoUseCase inscripcionCursoUseCase = new InscripcionCursoUseCase(iRepositorioModificarCurso);
+        InscripcionCursoUseCase inscripcionCursoUseCase = new InscripcionCursoUseCase(iRepositorioModificarCurso, iRepositorioConsultarCursoPorId);
         when(iRepositorioModificarCurso.update(curso)).thenReturn(true);
+        when(iRepositorioConsultarCursoPorId.findByIdCurso(1)).thenReturn(curso);
         boolean resultado = inscripcionCursoUseCase.inscripcion(curso, cuenta);
         Assertions.assertTrue(resultado);
     }
@@ -42,7 +45,8 @@ public class InscripcionCursoUnitTest {
         Curso curso = Curso.instance(1, "Ionic 5", factoryInscripto(), LocalDateTime.now().plusDays(5),
                 15);
         Cuenta cuenta = Cuenta.instance(1, "rabazan", LocalDateTime.now().minusDays(5), "Rodrigo Bazan", "123456");
-        InscripcionCursoUseCase inscripcionCursoUseCase = new InscripcionCursoUseCase(iRepositorioModificarCurso);
+        when(iRepositorioConsultarCursoPorId.findByIdCurso(1)).thenReturn(curso);
+        InscripcionCursoUseCase inscripcionCursoUseCase = new InscripcionCursoUseCase(iRepositorioModificarCurso, iRepositorioConsultarCursoPorId);
         Assertions.assertThrows(EstaInscriptoException.class, () -> inscripcionCursoUseCase.inscripcion(curso, cuenta));
     }
 
@@ -51,7 +55,7 @@ public class InscripcionCursoUnitTest {
     void inscripcionCurso_FechaLimitePaso_FechaLimiteException() throws CursoIncompletoException, CuentaIncompletaException, FechaCreacionIncorrectaException, EstaInscriptoException, UpdateCursoException, FechaLimiteException {
         Curso curso = Curso.instance(1, "Ionic 5", new ArrayList<>(), LocalDateTime.now().minusDays(1), 15);
         Cuenta cuenta = Cuenta.instance(1, "rabazan", LocalDateTime.now().minusDays(5), "Rodrigo Bazan", "123456");
-        InscripcionCursoUseCase inscripcionCursoUseCase = new InscripcionCursoUseCase(iRepositorioModificarCurso);
+        InscripcionCursoUseCase inscripcionCursoUseCase = new InscripcionCursoUseCase(iRepositorioModificarCurso, iRepositorioConsultarCursoPorId);
         Assertions.assertThrows(FechaLimiteException.class, () -> inscripcionCursoUseCase.inscripcion(curso, cuenta));
     }
 

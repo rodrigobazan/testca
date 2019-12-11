@@ -14,19 +14,22 @@ public class AdapterConfig {
     private final CrearCursoInput crearCursoInput;
     private final ModificarCursoInput modificarCursoInput;
     private final ConsultarCursosInput consultarCursosInput;
+    private final InscripcionCursoInput inscripcionCursoInput;
 
     public AdapterConfig(CrearCuentaInput crearCuentaInput,
                          ModificarCuentaInput modificarCuentaInput,
                          ConsultarCuentasInput consultarCuentasInput,
                          CrearCursoInput crearCursoInput,
                          ModificarCursoInput modificarCursoInput,
-                         ConsultarCursosInput consultarCursosInput) {
+                         ConsultarCursosInput consultarCursosInput,
+                         InscripcionCursoInput inscripcionCursoInput) {
         this.crearCuentaInput = crearCuentaInput;
         this.modificarCuentaInput = modificarCuentaInput;
         this.consultarCuentasInput = consultarCuentasInput;
         this.crearCursoInput = crearCursoInput;
         this.modificarCursoInput = modificarCursoInput;
         this.consultarCursosInput = consultarCursosInput;
+        this.inscripcionCursoInput = inscripcionCursoInput;
     }
 
     @Bean
@@ -57,6 +60,11 @@ public class AdapterConfig {
     @Bean
     public ConsultarCursosAdapter consultarCursosAdapter() {
         return new ConsultarCursosAdapter(consultarCursosInput);
+    }
+
+    @Bean
+    public InscripcionCursoAdapter inscripcionCursoAdapter() {
+        return new InscripcionCursoAdapter(inscripcionCursoInput);
     }
 
 

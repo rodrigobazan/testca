@@ -80,4 +80,9 @@ public class UseCaseConfig {
         return new ConsultarCursosUseCase(iRepositorioConsultarCursos);
     }
 
+    @Bean
+    public InscripcionCursoUseCase inscripcionCursoUseCase() {
+        return new InscripcionCursoUseCase(iRepositorioModificarCurso, iRepositorioConsultarCursoPorId);
+    }
+
 }

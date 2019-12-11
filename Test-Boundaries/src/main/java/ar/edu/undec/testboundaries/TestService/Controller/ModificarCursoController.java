@@ -4,6 +4,7 @@ import Adapter.ModificarCursoAdapter;
 import Excepciones.CursoExisteException;
 import Excepciones.FechaLimiteIncorrectaException;
 import Excepciones.UpdateCuentaException;
+import Excepciones.UpdateCursoException;
 import ModelDTO.CursoDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class ModificarCursoController {
         } catch (CursoExisteException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(e.mensaje());
-        } catch (UpdateCuentaException e) {
+        } catch (UpdateCursoException e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
