@@ -26,6 +26,8 @@ public class UseCaseConfig {
 
     private final IRepositorioModificarCurso iRepositorioModificarCurso;
 
+    private final IRepositorioConsultarCursos iRepositorioConsultarCursos;
+
     public UseCaseConfig(IRepositorioCrearCuenta iRepositorioCrearCuenta,
                          IRepositorioConsultarCuentaPorUsuario iRepositorioConsultarCuentaPorUsuario,
                          IRepositorioConsultarCuentaPorId iRepositorioConsultarCuentaPorId,
@@ -34,7 +36,7 @@ public class UseCaseConfig {
                          IRepositorioCrearCurso iRepositorioCrearCurso,
                          IRepositorioConsultarCursoPorNombre iRepositorioConsultarCursoPorNombre,
                          IRepositorioConsultarCursoPorId iRepositorioConsultarCursoPorId,
-                         IRepositorioModificarCurso iRepositorioModificarCurso) {
+                         IRepositorioModificarCurso iRepositorioModificarCurso, IRepositorioConsultarCursos iRepositorioConsultarCursos) {
         this.iRepositorioCrearCuenta = iRepositorioCrearCuenta;
         this.iRepositorioConsultarCuentaPorUsuario = iRepositorioConsultarCuentaPorUsuario;
         this.iRepositorioConsultarCuentaPorId = iRepositorioConsultarCuentaPorId;
@@ -44,6 +46,7 @@ public class UseCaseConfig {
         this.iRepositorioConsultarCursoPorNombre = iRepositorioConsultarCursoPorNombre;
         this.iRepositorioConsultarCursoPorId = iRepositorioConsultarCursoPorId;
         this.iRepositorioModificarCurso = iRepositorioModificarCurso;
+        this.iRepositorioConsultarCursos = iRepositorioConsultarCursos;
     }
 
     @Bean
@@ -70,6 +73,11 @@ public class UseCaseConfig {
     @Bean
     public ModificarCursoUseCase modificarCursoUseCase() {
         return new ModificarCursoUseCase(iRepositorioConsultarCursoPorId, iRepositorioConsultarCursoPorNombre, iRepositorioModificarCurso);
+    }
+
+    @Bean
+    public ConsultarCursosUseCase consultarCursosUseCase() {
+        return new ConsultarCursosUseCase(iRepositorioConsultarCursos);
     }
 
 }
