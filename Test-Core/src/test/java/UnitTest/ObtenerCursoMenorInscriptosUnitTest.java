@@ -35,7 +35,8 @@ public class ObtenerCursoMenorInscriptosUnitTest {
     void obtenerCursoMenorInscriptos_NoHayCursosConInscriptos_NoExisteInscriptosException() throws NoExisteInscriptosException {
         ObtenerCursoMenorInscriptosUseCase obtenerCursoMenorInscriptosUseCase = new ObtenerCursoMenorInscriptosUseCase(iRepositorioConsultarCursos);
         when(iRepositorioConsultarCursos.findAll()).thenReturn(factoryCursosSinInscriptos());
-        Assertions.assertThrows(NoExisteInscriptosException.class, obtenerCursoMenorInscriptosUseCase::obtenerCurso);
+        Curso curso = obtenerCursoMenorInscriptosUseCase.obtenerCurso();
+        Assertions.assertEquals("Ionic 3", curso.getTitulo());
     }
 
     private List<Curso> factoryCursosSinInscriptos() {

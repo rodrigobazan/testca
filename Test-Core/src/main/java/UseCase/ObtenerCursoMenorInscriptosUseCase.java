@@ -19,7 +19,7 @@ public class ObtenerCursoMenorInscriptosUseCase implements ObtenerCursoMenorInsc
                 .stream()
                 .min(Comparator.comparing(value -> value.getInscriptos().size()))
                 .orElse(null);
-        if (curso == null || curso.getInscriptos().isEmpty()) throw new NoExisteInscriptosException();
+        if (curso == null) throw new NoExisteInscriptosException();
         return curso;
     }
 }
